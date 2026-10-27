@@ -1,0 +1,13 @@
+---
+import { SITE } from "../lib/site";
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{SITE.name} · 12 Willow Lane, Bath · <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · {SITE.phone}</p>
+    <p>Open Tuesday to Saturday, 9am to 5:30pm.</p>
+  </div>
+</footer>
+<style>
+  .site-footer { margin-top: 64px; padding: 24px 0; background: var(--ink); color: #e9e4da; font-size: 15px; }
+  .site-footer a { color: #fff; }
+</style>

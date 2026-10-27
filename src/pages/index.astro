@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
+---
+<Base title="Home">
+  <section class="hero">
+    <h1>Books chosen by people who read them</h1>
+    <p>Willow Lane Books is a small independent bookshop in Bath, with new fiction, children's books and a room of second-hand finds.</p>
+    <a class="btn" href="/about">Visit the shop</a>
+  </section>
+
+  <section>
+    <h2>Why come in</h2>
+    <div class="cards">
+      <div class="card"><h3>Staff picks</h3><p>Every book on the front table has been read and recommended by one of us.</p></div>
+      <div class="card"><h3>Orders in two days</h3><p>Anything in print, ordered for you and ready to collect within two working days.</p></div>
+      <div class="card"><h3>Children's corner</h3><p>Picture books, first chapters and a reading rug for Saturday story time.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From the journal</h2>
+    <div class="cards">
+      {posts.map((p) => <PostCard href={`/blog/${p.id}`} title={p.data.title} description={p.data.description} date={p.data.pubDate} />)}
+    </div>
+  </section>
+</Base>
+<style>
+  .hero { padding: 56px 0 32px; }
+  .hero h1 { font-size: 44px; margin: 0 0 12px; }
+  .hero p { font-size: 20px; max-width: 640px; }
+</style>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date: Date;
+}
+const { href, title, description, date } = Astro.props;
+---
+<article class="card">
+  <p class="date">{date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+</article>
+<style>
+  .date { color: var(--muted); font-size: 14px; margin: 0; }
+</style>

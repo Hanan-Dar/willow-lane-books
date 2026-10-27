@@ -1,0 +1,20 @@
+---
+import { SITE } from "../lib/site";
+const here = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap row">
+    <a class="logo" href="/">{SITE.name}</a>
+    <nav aria-label="Main">
+      {SITE.nav.map((l) => <a href={l.href} aria-current={here === l.href ? "page" : undefined}>{l.label}</a>)}
+    </nav>
+  </div>
+</header>
+<style>
+  .site-header { border-bottom: 1px solid #e7e1d6; background: #fff; }
+  .row { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
+  .logo { font: 700 22px var(--font-head); color: var(--ink); text-decoration: none; }
+  nav { display: flex; gap: 18px; font-family: var(--font-head); }
+  nav a { color: var(--ink); text-decoration: none; }
+  nav a[aria-current="page"] { color: var(--accent); font-weight: 700; }
+</style>
